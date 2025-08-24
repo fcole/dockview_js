@@ -61,13 +61,11 @@ export abstract class DragHandler extends CompositeDisposable {
 
                     if (!hasData) {
                         /**
-                         * Although this is not used by dockview many third party dnd libraries will check
+                         * Although this is not used by dockview many third-party drag and drop libraries check
                          * dataTransfer.types to determine valid drag events.
                          *
-                         * For example: in react-dnd if dataTransfer.types is not set then the dragStart event will be cancelled
-                         * through .preventDefault(). Since this is applied globally to all drag events this would break dockviews
-                         * dnd logic. You can see the code at
-                     P    * https://github.com/react-dnd/react-dnd/blob/main/packages/backend-html5/src/HTML5BackendImpl.ts#L542
+                         * Some libraries cancel the dragStart event when this value is missing, which would break
+                         * dockview's drag-and-drop logic.
                          */
                         event.dataTransfer.setData('text/plain', '');
                     }

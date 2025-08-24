@@ -3019,7 +3019,7 @@ describe('dockviewComponent', () => {
         expect(viewQuery3.length).toBe(1);
     });
 
-    // load a layout with a default tab identifier when react default is present
+    // load a layout with a default tab identifier when a default export is present
 
     // load a layout with invialid panel identifier
 

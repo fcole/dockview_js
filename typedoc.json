@@ -1,6 +1,6 @@
 {
-    "entryPoints": ["packages/dockview", "packages/dockview-core", "packages/dockview-vue"],
-    "name": "Dockview",
+    "entryPoints": ["packages/dockview-core"],
+    "name": "Dockview Core",
     "entryPointStrategy": "packages",
     "includeVersion": true,
     "logLevel": "Verbose"
