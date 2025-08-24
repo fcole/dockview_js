@@ -2,7 +2,7 @@
   "name": "dockview-core",
   "version": "4.7.0",
   "description": "Zero dependency layout manager supporting tabs, grids and splitviews",
-  "keywords": [
+    "keywords": [
     "splitview",
     "split-view",
     "gridview",
@@ -19,10 +19,8 @@
     "splitter",
     "drag-and-drop",
     "drag",
-    "drop",
-    "react",
-    "react-component"
-  ],
+    "drop"
+    ],
   "homepage": "https://github.com/mathuo/dockview",
   "bugs": {
     "url": "https://github.com/mathuo/dockview/issues"

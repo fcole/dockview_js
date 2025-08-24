@@ -13,9 +13,7 @@ function formatDate() {
         return value;
     }
 
-    return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(
-        date.getDate()
-    )}`;
+    return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}`;
 }
 
 function shortGitHash() {
@@ -30,55 +28,13 @@ function shortGitHash() {
 const version = `0.0.0-experimental-${shortGitHash()}-${formatDate()}`;
 
 // dockview-core
-
-const dockviewCorePath = path.join(
-    rootDir,
-    'packages',
-    'dockview-core',
-    'package.json'
-);
-const dockviewCorePackageJson = JSON.parse(
-    fs.readFileSync(dockviewCorePath).toString()
-);
+const dockviewCorePath = path.join(rootDir, 'packages', 'dockview-core', 'package.json');
+const dockviewCorePackageJson = JSON.parse(fs.readFileSync(dockviewCorePath).toString());
 
 dockviewCorePackageJson.version = version;
 
-fs.writeFileSync(
-    dockviewCorePath,
-    JSON.stringify(dockviewCorePackageJson, null, 4)
-);
+fs.writeFileSync(dockviewCorePath, JSON.stringify(dockviewCorePackageJson, null, 4));
 
-// dockview
-
-const depPackages = ['dockview', 'dockview-vue', 'dockview-react'];
-
-for (const depPackage of depPackages) {
-    const dockviewPath = path.join(
-        rootDir,
-        'packages',
-        depPackage,
-        'package.json'
-    );
-    const dockviewPackageJson = JSON.parse(
-        fs.readFileSync(dockviewPath).toString()
-    );
-
-    dockviewPackageJson.version = version;
-    dockviewPackageJson.dependencies['dockview-core'] =
-        dockviewPackageJson.version;
-
-    fs.writeFileSync(
-        dockviewPath,
-        JSON.stringify(dockviewPackageJson, null, 4)
-    );
-
-    // sanity check
-
-    const dvCore = JSON.parse(fs.readFileSync(dockviewCorePath).toString());
-    const dv = JSON.parse(fs.readFileSync(dockviewPath).toString());
-
-    console.log(`dockview-core version: ${dvCore.version}`);
-    console.log(
-        `${depPackage} version: ${dv.version} dockview-core dependency version: ${dv.dependencies['dockview-core']}`
-    );
-}
+// sanity check
+const dvCore = JSON.parse(fs.readFileSync(dockviewCorePath).toString());
+console.log(`dockview-core version: ${dvCore.version}`);
